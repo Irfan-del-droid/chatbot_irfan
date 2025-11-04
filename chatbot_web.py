@@ -1,4 +1,6 @@
 import os
+import random
+from datetime import datetime
 from flask import Flask, request, jsonify, make_response
 
 # Import your existing chatbot logic
@@ -12,6 +14,26 @@ except ImportError:
             return "Hello! How can I help you today?"
         elif message_lower in ["bye", "goodbye"]:
             return "Goodbye! Have a great day!"
+        elif message_lower == "date":
+            now = datetime.now()
+            return now.strftime("%B %d, %Y")
+        elif message_lower == "time":
+            now = datetime.now()
+            return now.strftime("%I:%M %p")
+        elif message_lower == "joke":
+            jokes = [
+                "Why don't scientists trust atoms? Because they make up everything!",
+                "Why did the scarecrow win an award? He was outstanding in his field!",
+                "Why don't eggs tell jokes? They'd crack each other up!",
+                "What do you call a fake noodle? An impasta!",
+                "Why did the math book look so sad? Because it had too many problems!",
+                "What do you call a bear with no teeth? A gummy bear!",
+                "Why don't programmers like nature? It has too many bugs!",
+                "How do you organize a space party? You planet!",
+                "Why did the Python programmer not respond? Because they were stuck in a loop!",
+                "What's a programmer's favorite hangout place? Foo Bar!"
+            ]
+            return random.choice(jokes)
         else:
             return f"I received your message: {message}"
 

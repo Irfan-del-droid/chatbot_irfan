@@ -2,7 +2,12 @@ import os
 from flask import Flask, request, jsonify, make_response
 
 # Import your existing chatbot logic
-from name import get_response
+try:
+    from name import get_response
+except ImportError:
+    # Fallback implementation if name module is not found
+    def get_response(message):
+        return f"Echo: {message}"
 
 
 app = Flask(__name__)

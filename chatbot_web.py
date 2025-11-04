@@ -7,7 +7,13 @@ try:
 except ImportError:
     # Fallback implementation if name module is not found
     def get_response(message):
-        return f"Echo: {message}"
+        message_lower = message.lower().strip()
+        if message_lower == "hi" or message_lower == "hello":
+            return "Hello! How can I help you today?"
+        elif message_lower in ["bye", "goodbye"]:
+            return "Goodbye! Have a great day!"
+        else:
+            return f"I received your message: {message}"
 
 
 app = Flask(__name__)
